@@ -1,0 +1,119 @@
+﻿<Window x:Class="WPFNAME.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPFNAME"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800" MinWidth="800" MaxWidth="800" MinHeight="450" MaxHeight="450">
+
+    <Window.Resources>
+        <Style TargetType="TextBox" xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Hint">
+            <Style.Resources>
+                <VisualBrush x:Key="CueBannerBrush" AlignmentX="Left" AlignmentY="Top" Stretch="None">
+                    <VisualBrush.Visual>
+                        <Label Content="Write a message..." Foreground="LightGray" />
+                    </VisualBrush.Visual>
+                </VisualBrush>
+            </Style.Resources>
+            <Style.Triggers>
+                <Trigger Property="Text" Value="{x:Static sys:String.Empty}">
+                    <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
+                </Trigger>
+                <Trigger Property="Text" Value="{x:Null}">
+                    <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
+                </Trigger>
+                <Trigger Property="IsKeyboardFocused" Value="True">
+                    <Setter Property="Background" Value="White" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+    </Window.Resources>
+
+    <Grid>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+
+        <ListBox Name="Contacts" Margin="0,46,0,0" HorizontalContentAlignment="Stretch" SelectionChanged="Contacts_SelectionChanged">
+            <ListBox.BorderBrush>
+                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
+            </ListBox.BorderBrush>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="2*"/>
+                        </Grid.ColumnDefinitions>
+
+
+                        <Ellipse Height="60" Width="60" Grid.Column="0" HorizontalAlignment="Left" Stretch="Fill">
+                            <Ellipse.Fill>
+                                <ImageBrush ImageSource="{Binding Avatar}"/>
+                            </Ellipse.Fill>
+                        </Ellipse>
+                        <TextBlock Text="{Binding Name}" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" />
+                        <TextBlock Text="{Binding Date}" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Top" Foreground="Gray"/>
+
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <DockPanel Grid.Column="1">
+
+            <Border DockPanel.Dock="Top" BorderThickness="1 0 1 1" Height="46" Margin="0,0,-0.2,0">
+                <Border.BorderBrush>
+                    <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
+                </Border.BorderBrush>
+                <Canvas  Height="46" Margin="-0.8,0,0,-0.4">
+                    <Image Height="33" Source="Image10.png" Stretch="Fill" Width="17" Canvas.Left="489" Canvas.Top="3"/>
+                    <Image Height="33" Source="Image11.png" Stretch="Fill" Width="35" Canvas.Left="440" Canvas.Top="3"/>
+
+                    <Label Content="online" Foreground="#FF2F7BAC" Canvas.Top="20" Canvas.Left="10" />
+                    <Label Name="Name" Content="Name" Canvas.Top="-6" Canvas.Left="10" FontSize="20" FontWeight="Bold" />
+
+                </Canvas>
+            </Border>
+
+            <TextBox DockPanel.Dock="Bottom" Height="50" KeyDown="TextBox_KeyDown" Name="tbox" Margin="44,0,111.8,1" BorderThickness="0" Style="{StaticResource ResourceKey=Hint}" Tag="Write a message...">
+            </TextBox>
+
+
+            <Canvas DockPanel.Dock="Top" Name="Canvass">
+                <local:MessageList x:Name="MessageList1" Visibility="Visible" Height="313"/>
+
+                <local:MessageList x:Name="MessageList2" Visibility="Hidden"/>
+
+                <local:MessageList x:Name="MessageList3" Visibility="Hidden"/>
+
+                <local:MessageList x:Name="MessageList4" Visibility="Hidden"/>
+
+                <local:MessageList x:Name="MessageList5" Visibility="Hidden"/>
+            </Canvas>
+
+        </DockPanel>
+
+        <Image Margin="10,10,220.8,382" Source="Image1.png" Stretch="Fill" Panel.ZIndex="1"/>
+        <Image Margin="10.2,371,483.6,10" Source="Image4.png" Stretch="Fill" Grid.Column="1"/>
+        <Image Margin="423.2,371,64.6,10" Source="Image5.png" Stretch="Fill" Grid.Column="1"/>
+        <Image Margin="469.2,371,18.6,10" Source="Image6.png" Stretch="Fill" Grid.Column="1"/>
+
+        <TextBox Margin="44,10,9.8,379" BorderThickness="0" KeyDown="TextBox_KeyDown_1" Name="Search">
+            <TextBox.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="6"/>
+                </Style>
+            </TextBox.Resources>
+            <TextBox.Background>
+                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
+            </TextBox.Background>
+        </TextBox>
+
+    </Grid>
+
+</Window>

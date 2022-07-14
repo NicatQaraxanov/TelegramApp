@@ -1,0 +1,54 @@
+﻿<UserControl x:Class="WPFNAME.MessageList"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WPFNAME"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800" Background="White" Height="313" Width="529" MinWidth="529" MaxWidth="529" MinHeight="313" MaxHeight="313">
+
+    <ListBox Name ="MesajYeri" BorderThickness="0" Margin="0,0,-0.2,-0.2" HorizontalContentAlignment="Stretch">
+        <ListBox.Background>
+            <ImageBrush ImageSource="wp4009285.jpg"/>
+        </ListBox.Background>
+
+        <ListBox.ItemContainerStyle>
+            <Style TargetType="{x:Type ListBoxItem}">
+                <Setter Property="Focusable" Value="False"/>
+            </Style>
+        </ListBox.ItemContainerStyle>
+        
+        <ListBox.ItemTemplate>
+            <DataTemplate>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <Border Name ="MessageBorder" Grid.Column="1" HorizontalAlignment="Right" Background="#c9e7ff" Margin="0,0,5,0" CornerRadius="5" BorderThickness="5" BorderBrush="#c9e7ff">
+                        <StackPanel Background="#c9e7ff">
+                            <TextBlock Name ="Title" Text="{Binding Title}" HorizontalAlignment="Center" FontSize="16"/>
+                            <TextBlock Name ="Date" Text="{Binding Date}" HorizontalAlignment="Right" TextAlignment="Right" Foreground="Gray"/>
+                        </StackPanel>
+                    </Border>
+
+                    <Border Name ="AnswerPanel" Grid.Row="1" HorizontalAlignment="Left" Background="White" CornerRadius="5" BorderThickness="5" BorderBrush="White">
+                        <StackPanel Background="White">
+                            <TextBlock Name ="AnswerTitle" Text="Salam sora yazacam" HorizontalAlignment="Center" FontSize="16"/>
+                            <TextBlock Name ="AnswerDate" Text="{Binding Date}" HorizontalAlignment="Right" TextAlignment="Right" Foreground="Gray"/>
+                        </StackPanel>
+                    </Border>
+
+
+                </Grid>
+            </DataTemplate>
+        </ListBox.ItemTemplate>
+    </ListBox>
+
+
+</UserControl>
